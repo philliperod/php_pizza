@@ -10,36 +10,40 @@
     // SERVER SIDE VALIDATION
 
     if(isset($_POST['submit'])){
-        // checking if the form has been submitted and have data
-     
-        // check email field
+        
         if(empty($_POST['email'])){
-            // empty() - determine whether a variable is empty
             echo 'An email is required <br/>';
         } else {
-            echo htmlspecialchars($_POST['email']);
-            // escaping any malicious code found in the form field
+            $email = $_POST['email']; // store that data in a variable
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                // filter_var - filters a variable with a specified filter
+                // has 2 parameters - (value, FILTER_TO_APPLY)
+                // FILTER_VALIDATE_EMAIL - validates whether the value is a valid e-mail address
+                // if statement checks if it is NOT TRUE
+                echo 'Email must be a valid email address <br \>';
+            }
         }
 
-        // check title field
         if(empty($_POST['title'])){
-            // empty() - determine whether a variable is empty
             echo 'A title is required <br/>';
         } else {
-            echo htmlspecialchars($_POST['title']);
-            // escaping any malicious code found in the form field
+            $title = $_POST['title'];
+            if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
+                // preg_match - perform a regular expression match
+                // has 2 parameters - (pattern_to_search_for, input_string)
+                echo 'Title must be letters and spaces only <br \>';
+            }
         }
 
-        // check ingredients field
         if(empty($_POST['ingredients'])){
-            // empty() - determine whether a variable is empty
             echo 'Ingredients are required <br/>';
         } else {
-            echo htmlspecialchars($_POST['ingredients']);
-            // escaping any malicious code found in the form field
+            $ingredients = $_POST['ingredients'];
+            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredients)){
+                echo 'Ingredients must be comma separated list only';
         }
-    } // end of POST check
-
+    } 
+    }
     
 
 ?>
