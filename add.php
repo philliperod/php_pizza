@@ -6,15 +6,16 @@
     // }
     // isset checks if a variable or value has been set
     // $_GET is a global array
-    // $_GET['submit'] checks if that value has been initialized (name="submit"); if this has value then it means that it has submitted data to the server 
+    // $_GET['submit'] checks if that value has been initialized (name="submit") 
+    // if this has value then it means that it has submitted data to the server 
     // next you want to extract the data (['submit]) you sent with the GET request ($_GET)
-    // $_GET['key'] is looking for the key and will pass back the value for that key (key-value pair)
+    // $_GET['key'] is looking for the key and will pass back the value
     
 
     if(isset($_POST['submit'])){
-        echo $_POST['email'];
-        echo $_POST['title'];
-        echo $_POST['ingredients'];
+        echo htmlspecialchars($_POST['email']);
+        echo htmlspecialchars($_POST['title']);
+        echo htmlspecialchars($_POST['ingredients']);
     }
     // $_POST will be more secured than $_GET
     // difference between the two were the results
@@ -47,3 +48,16 @@
 
 
 </html>
+
+
+<!-- 
+    // how can a user take advantage of your security issue in a form? 
+    // By using javascript in the form inputs
+    // it's called Cross-side scripting attacks or XSS attacks 
+    // injects malicious code anywhere that gets data from an end user (like a form field)
+    // it will get sent to the server and come back to the browser in which the code will execute
+    // there exist a function that can prevent this attack - htmlspecialchars
+    // htmlspecialchars - convert special characters to HTML entities 
+    // certain characters have special meanings and this will preserve it
+    // this function returns a string with these conversions made
+ -->
