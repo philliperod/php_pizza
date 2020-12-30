@@ -62,15 +62,15 @@
 <section class="container grey-text">
     <h4 class="center">Add a Pizza</h4>
     <form action="add.php" method="POST" class="white">
-        <input type="email" name="email" class="validate" value="<?php echo $email ?>">
+        <input type="email" name="email" class="validate" value="<?php echo htmlspecialchars($email) ?>">
         <!-- created a value key attribute that will retain user's input in the field -->
         <label for="email">Your Email: </label>
         <div class="red-text"><?php echo $error['email']; ?></div>
-        <input type="text" name="title" class="validate" value="<?php echo $title ?>">
+        <input type="text" name="title" class="validate" value="<?php echo htmlspecialchars($title) ?>">
         <!-- created a value key attribute that will retain user's input in the field -->
         <label for="title">Pizza Title: </label>
         <div class="red-text"><?php echo $error['title']; ?></div>
-        <input type="text" name="ingredients" class="validate" value="<?php echo $ingredients ?>">
+        <input type="text" name="ingredients" class="validate" value="<?php echo htmlspecialchars($ingredients) ?>">
         <!-- created a value key attribute that will retain user's input in the field -->
         <label for="ingredients">Ingredients (comma separated): </label>
         <div class="red-text"><?php echo $error['ingredients']; ?></div>
