@@ -1,73 +1,52 @@
-<?php 
+<?php
 
-// Connecting to database
-// Options: MySQLi (i = improve) or PDO (PHP Data Objects)
-
-
-    // Step 1 - connect to database
+    // RENDERING DATA TO THE BROWSER
+    // attempting to output to a template on the browser
+    // will output $pizzas
 
     $connect = mysqli_connect('localhost', 'phil', 'test1', 'php_pizza');
-    // mysqli_connect(host, username, password, database) - function will connect to the whole database
-    // this is storing the reference to the database
-    
 
-    // Step 2 - check connection to make sure it works (returns an error if not true)
-
-    if(!$connect) {
-        echo 'Connection error: ' . mysqli_connect_error();
-        // returns the last error message string from the last call to mysqli_connect().
+    if (!$connect) {
+        echo 'Connection error: '.mysqli_connect_error();
     }
 
-    
-    // Step 3.a - write queries for all pizzas
-    // 3 steps to this - construct a query, make the query, then fetch the query
-
-    $sql = 'SELECT title, ingredients, id FROM pizzas';
-    // SELECT - to query data from a table
-    // * - selects all (in the previous iteration before changing to above)
-    // FROM - specify the source table and its schema name
-    // pizzas - table that was created
-
-
-    // Step 3.b - make query and get results
-
+    $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
     $result = mysqli_query($connect, $sql);
-    // mysqli_query(database, command_to_use)
-    // first parameter is the reference to the database
-    // second parameter is the query used to get specificity from the database
-
-
-    // Step 3.c - fetch the resulting row(s) as an array
-    
     $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    // mysqli_fetch_all(result, return_as)
-    // first parameter is the result of the query made
-    // second parameter is returning it into an associative array
-    // this basically formats your results
 
-
-    // Step 4 - free result from memory
-    
     mysqli_free_result($result);
-    // free all memory associated with the result identifier
-
-
-    // Step 5 - close connection
-
     mysqli_close($connect);
-    // closes a previously opened database connection
 
-
-    print_r($pizzas);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include('templates/header.php'); ?>
+<?php include 'templates/header.php'; ?>
 
+<h4 class="center grey-text">Pizzas!</h4>
 
-<?php include('templates/footer.php'); ?>
+<div class="container">
+    <div class="row">
+
+        <?php foreach ($pizzas as $pizza) { ?>
+        <div class="col s12 m4 l3">
+            <div class="card z-depth-0">
+                <div class="card-content center">
+                    <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
+                    <div><?php echo htmlspecialchars($pizza['ingredients']); ?></div>
+                </div>
+                <div class="card-action right-align">
+                    <a href="#" class="brand-text">More Info</a>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+
+    </div>
+</div>
+
+<?php include 'templates/footer.php'; ?>
 
 
 </html>
