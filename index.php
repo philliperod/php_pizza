@@ -45,6 +45,19 @@
     // second parameter is returning it into an associative array
     // this basically formats your results
 
+
+    // Step 4 - free result from memory
+    
+    mysqli_free_result($result);
+    // free all memory associated with the result identifier
+
+
+    // Step 5 - close connection
+
+    mysqli_close($connect);
+    // closes a previously opened database connection
+
+
     print_r($pizzas);
 ?>
 
