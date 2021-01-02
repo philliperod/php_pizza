@@ -1,5 +1,18 @@
 <?php 
+
+// Connecting to database
+// Options: MySQLi (i = improve) or PDO (PHP Data Objects)
+
+    // Step 1 - connect to database
+    $connect = mysqli_connect('localhost', 'phil', 'test1', 'php_pizza');
+    // mysqli_connect(host, username, password, database) - function will connect to the whole database
+    // this is storing the reference to the database
     
+    //Step 2 - check connection to make sure it works (returns an error if not true)
+    if(!$connect) {
+        echo 'Connection error: ' . mysqli_connect_error();
+        // returns the last error message string from the last call to mysqli_connect().
+    }
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +25,3 @@
 
 
 </html>
-
-<!-- 
-    // this will have the <html> tags and serve as a primary point 
-    // basic structure that has include statements
-    // include statement includes and evaluates the specified file
-    // when a file is included, the code it contains inherits the variable scope of the line on which the include occurs
-    // however, all FUNCTIONS and CLASSES defined in the included file have the global scope
- -->

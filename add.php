@@ -1,18 +1,5 @@
 <?php 
-    // if(isset($_GET['submit'])){
-    //     echo $_GET['email'];
-    //     echo $_GET['title'];
-    //     echo $_GET['ingredients'];
-    // }
-
-    
-
     // REDIRECTING
-
-    // if there are no errors from the form fields then we want to redirect to the home page
-    // you'll need to use a conditional statement to check if any errors exist
-    // to do so, you will need to check the $error_array if there are any empty strings
-    // if not then redirect to the home page
 
     $email = $title = $ingredients = '';
     $error = [
@@ -52,16 +39,10 @@
     
 
     if(array_filter($error)){
-        // array_filter - filters elements of an array using a callback function
-        // iterates over each value in the array passing them to the callback function 
-        // If the callback function returns TRUE, the current value from array is returned into the result array
         echo 'Errors in the form';
     } else {
         echo 'Form is valid';
         header('Location: index.php');
-        // header() - is used to send a raw HTTP header
-        // must be called before any actual output is sent, either by normal HTML tags, blank lines in a file, or from PHP
-        // very common error to read code with include, or require, functions, or another file access function, and have spaces or empty lines that are output before header() is called
     }
 ?>
 
