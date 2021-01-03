@@ -1,5 +1,8 @@
 <?php
-    // REDIRECTING
+
+    //SAVING DATA TO THE DATABASE
+
+    include 'config/db_connect.php';
 
     $email = $title = $ingredients = '';
     $error = [
@@ -35,13 +38,42 @@
                 $error['ingredients'] = 'Ingredients must be comma separated list only <br \>';
             }
         }
-    }
 
-    if (array_filter($error)) {
-        echo 'Errors in the form';
-    } else {
-        echo 'Form is valid';
-        header('Location: index.php');
+        if (array_filter($error)) {
+            echo 'Errors in the form';
+        } else {
+            // this is where you will save the data to the database if no Errors
+            // Step 1 - getting the data ready
+
+            $email = mysqli_real_escape_string($connect, $_POST['email']);
+            $title = mysqli_real_escape_string($connect, $_POST['title']);
+            $ingredients = mysqli_real_escape_string($connect, $_POST['ingredients']);
+            // mysqli_real_escape_string(connection, value_to_store_in_database)
+            // this escapes any malicious SQL characters from SQL injections
+
+            // Step 2 - setup a SQL string to import the data into the database
+
+            $sql = "INSERT INTO pizzas(email, title, ingredients) VALUES('{$email}', '{$title}', '{$ingredients}')";
+            // insert the data into the table $pizzas
+            // which will update the columns(email, title, ingredients)
+            // with these values($email, $title, $ingredients) for the columns
+
+            // Step 3 - save to database and check if it works
+
+            if (mysqli_query($connect, $sql)) {
+                // if successful (saved to the database), run code
+                header('Location: index.php');
+            // redirect to index.php
+            } else {
+                // if error, run error function
+                echo 'Query error: '.mysqli_error($connect);
+            }
+        }
+        // redirect command fires only if a post has been submitte
+        // which means it needs to be inside the main if blocks
+        // if written outside the if blocks then it will automatically complete without any input
+        // and since the $errors array will always be empty when you enter the page
+        // the redirect will fire immediately
     }
 ?>
 
