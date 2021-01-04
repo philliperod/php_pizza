@@ -1,11 +1,6 @@
 <?php
 
-    //SAVING DATA TO THE DATABASE
-
     include 'config/db_connect.php';
-    // include statement includes and evaluates the specified file
-    // created a separate config file titled db_connect.php
-    // db_connect.php holds the function that connects to the database
 
     $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
     $result = mysqli_query($connect, $sql);
@@ -39,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="card-action right-align">
-                    <a href="#" class="brand-text">More Info</a>
+                    <a href="details.php?id=<?php echo $pizza['id']; ?>" class="brand-text">More Info</a>
                 </div>
             </div>
         </div>
