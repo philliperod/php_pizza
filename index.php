@@ -17,15 +17,16 @@
 
 <?php include 'templates/header.php'; ?>
 
-<h4 class="center grey-text">Pizzas!</h4>
+<h4 class="center grey-text heading">Pizzas!</h4>
 
 <div class="container">
     <div class="row">
 
         <?php foreach ($pizzas as $pizza) { ?>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m4 l3 pizza-content">
             <div class="card z-depth-0">
                 <div class="card-content center">
+                    <img src="images/pizza.svg" class="pizza">
                     <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
                     <ul>
                         <?php foreach (explode(',', $pizza['ingredients']) as $ingredient) { ?>
