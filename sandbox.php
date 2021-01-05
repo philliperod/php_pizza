@@ -1,21 +1,45 @@
 <?php
 
-// SUPER GLOBALS - $_VARIABLENAME['']
-// special arrays in PHP that are pre-populated with values
-// by the time you run your code
-// examples - $_POST['name], $_GET['name]
+    // SESSIONS
+    // consists of a way to preserve certain data across subsequent accesses
+    // a user will be assigned a session id
+    // either it is stored in the cookie on user side
+    // or propagated in the URL
+    // allows you to store data between requests in the $_SESSION array
 
-echo $_SERVER['SERVER_NAME'].'<br/>';
-// this will contain different info about the server
-// will need to capitalize inside the brackets
+    // simplier way to say it
+    // stores data in the server between requests and between loading pages
+    // the server is keeping track of info of different things you do on the website
+    // session will last until you close the webpage
 
-echo $_SERVER['REQUEST_METHOD'].'<br/>';
-// check the request method on how this page was obtained
+    // Step 1 - create a form
 
-echo $_SERVER['SCRIPT_FILENAME'].'<br/>';
-// provides file name path
+    // Step 2 - handle the POST requests
 
-echo $_SERVER['PHP_SELF'].'<br/>';
-// path to the current file relative to the localhost
-// example of use - in <form> action, you can use it to refer to its current page
-// side note - rewrote the <form> action to use PHP_SELF
+    if (isset($_POST['submit'])) {
+        session_start();
+        // creates a session or resumes the current one based on a session identifier passed via a GET or POST request, or passed via a cookie
+        $_SESSION['name'] = $_POST['name'];
+        header('Location: index.php');
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <input type="text" name="name">
+        <input type="submit" name="submit" value="submit">
+    </form>
+
+</body>
+
+</html>
