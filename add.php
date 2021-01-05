@@ -62,7 +62,7 @@
 
 <section class="container grey-text">
     <h4 class="center">Add a Pizza</h4>
-    <form action="add.php" method="POST" class="white">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" class="white">
         <input type="email" name="email" class="validate" value="<?php echo htmlspecialchars($email); ?>">
         <label for="email">Your Email: </label>
         <div class="red-text"><?php echo $error['email']; ?></div>
