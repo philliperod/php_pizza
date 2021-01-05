@@ -13,13 +13,20 @@
     // session will last until you close the webpage
 
     // Step 1 - create a form
+    // <form> method will be POST
 
     // Step 2 - handle the POST requests
 
     if (isset($_POST['submit'])) {
         session_start();
-        // creates a session or resumes the current one based on a session identifier passed via a GET or POST request, or passed via a cookie
+        // definition: creates a session or resumes the current one based on a session identifier passed via a GET or POST request, or passed via a cookie
+        // check if the user clicked on the submit button
+        // if so then start the session
+
         $_SESSION['name'] = $_POST['name'];
+        // first accessing the session super global
+        // the stored data of 'name' in the input field will be stored into the session variable
+
         header('Location: index.php');
     }
 
