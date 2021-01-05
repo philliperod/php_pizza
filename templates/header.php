@@ -2,15 +2,17 @@
 
     session_start();
 
-    $_SESSION['name'] = 'Richard';
-    // if you want to override that session variable in a particular file
-    // you can assign a value in the same file
-    // even if you were to submit a new value for the session variable, it will not change the defined value in that file
-    // will need to be placed before the dynamic session variable
-
     $name = $_SESSION['name'];
-    // to acccess the session variable, you will neeed to run session_start()
-    // assign the session variable to a local variable that can be accessed in the file
+
+    if ('no_name' == $_SERVER['QUERY_STRING']) {
+        // QUERY_STRING - is the stirng at the end of the url
+        // localhost:8888/index.php?KEY_VALUE
+        // it will be anything after the question mark
+        unset($_SESSION['name']);
+        // Unset a given variable or destroys the specified variables
+    }
+    // this if block states:
+    // if the end of this url equals no_name then delete the session variable
 
 ?>
 

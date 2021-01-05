@@ -19,7 +19,9 @@
 
     if (isset($_POST['submit'])) {
         session_start();
-        // definition: creates a session or resumes the current one based on a session identifier passed via a GET or POST request, or passed via a cookie
+        // definition: creates a session or resumes the current one
+        // based on a session identifier passed via a GET or POST request
+        // or passed via a cookie
         // check if the user clicked on the submit button
         // if so then start the session
 
