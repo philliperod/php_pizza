@@ -1,18 +1,17 @@
 <?php
 
+    // Null Coalescing
+    // basically setting a default value for the session variable
+    // currently, when the session variable is unset it returns a warning on the page
+    // using null coalescing sets a default value which will be set for the session variable
+
     session_start();
 
-    $name = $_SESSION['name'];
+    $name = $_SESSION['name'] ?? 'Guest';
 
     if ('no_name' == $_SERVER['QUERY_STRING']) {
-        // QUERY_STRING - is the stirng at the end of the url
-        // localhost:8888/index.php?KEY_VALUE
-        // it will be anything after the question mark
         unset($_SESSION['name']);
-        // Unset a given variable or destroys the specified variables
     }
-    // this if block states:
-    // if the end of this url equals no_name then delete the session variable
 
 ?>
 
