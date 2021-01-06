@@ -1,25 +1,14 @@
 <?php
 
-    // COOKIES
-    // Step 1 - checking cookie for gender
-    // Step 2 - create cookie
-    // Step 3 - get cookie
-
     session_start();
 
     $name = $_SESSION['name'] ?? 'Guest';
+    $gender = $_COOKIE['gender'] ?? 'Unknown';
 
     if ('no_name' == $_SERVER['QUERY_STRING']) {
         unset($_SESSION['name']);
     }
 
-    $gender = $_COOKIE['gender'] ?? 'Unknown';
-    // $_COOKIE - super global; HTTP Cookies
-    // an associative array of variables passed to the current script via HTTP Cookies
-    // store the cookie to a local variable with a default value
-    // if the cookie is not set then it will return 'Unknown'
-
-    // Step 4 - output the cookie value into the HTML template
 ?>
 
 

@@ -8,6 +8,15 @@
         header('Location: index.php');
     }
 
+    // FILE SYSTEM
+    // PHP can communicate with files on the user's computer or server
+
+    $quote = readfile('README.txt');
+    // reads a file and writes it to the output buffer
+    // at the end of the output it will show the number of bytes
+
+    echo $quote;
+
 ?>
 
 <!DOCTYPE html>
