@@ -1,34 +1,32 @@
 <?php
 
-    // SESSIONS
-    // consists of a way to preserve certain data across subsequent accesses
-    // a user will be assigned a session id
-    // either it is stored in the cookie on user side
-    // or propagated in the URL
-    // allows you to store data between requests in the $_SESSION array
+    // COOKIES
+    // rather than keeping a session variable in the server
+    // you can set a cookie for the user that will store data in their computer
+    // this will be used to identify if you went to a particular page before
+    // added an item to your cart, past behavior to enchance experience
+    // side note - sessions is much safer than cookies
+    // because you're keeping the data hidden on the server than on the computer
+    // for sensitive data, it's best to keep it in sessions
 
-    // simplier way to say it
-    // stores data in the server between requests and between loading pages
-    // the server is keeping track of info of different things you do on the website
-    // session will last until you close the webpage
 
-    // Step 1 - create a form
-    // <form> method will be POST
-
-    // Step 2 - handle the POST requests
+    // Step 1 - checking cookie for gender
 
     if (isset($_POST['submit'])) {
+        // first need to check if the form has been submitted
+        
+        setcookie('gender', $_POST['gender'], time() + 86400)
+        // set name of cookie, apply value to it from <select 'gender'>, expire in 24 hr
+        
+        // setcookie(name_of_cookie, value_applied_to_cookie, cookie_expiration)
+        // defines a cookie to be sent along with the rest of the HTTP headers
+        // must be sent BEFORE any output from your script
+        // requires that you place calls to this function prior to any output
+
+
+
         session_start();
-        // definition: creates a session or resumes the current one
-        // based on a session identifier passed via a GET or POST request
-        // or passed via a cookie
-        // check if the user clicked on the submit button
-        // if so then start the session
-
         $_SESSION['name'] = $_POST['name'];
-        // first accessing the session super global
-        // the stored data of 'name' in the input field will be stored into the session variable
-
         header('Location: index.php');
     }
 
@@ -46,6 +44,10 @@
 <body>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <input type="text" name="name">
+        <select name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
         <input type="submit" name="submit" value="submit">
     </form>
 
