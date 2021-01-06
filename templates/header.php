@@ -1,9 +1,9 @@
 <?php
 
-    // Null Coalescing
-    // basically setting a default value for the session variable
-    // currently, when the session variable is unset it returns a warning on the page
-    // using null coalescing sets a default value which will be set for the session variable
+    // COOKIES
+    // Step 1 - checking cookie for gender
+    // Step 2 - create cookie
+    // Step 3 - get cookie
 
     session_start();
 
@@ -13,7 +13,16 @@
         unset($_SESSION['name']);
     }
 
+    $gender = $_COOKIE['gender'] ?? 'Unknown';
+    // $_COOKIE - super global; HTTP Cookies
+    // an associative array of variables passed to the current script via HTTP Cookies
+    // store the cookie to a local variable with a default value
+    // if the cookie is not set then it will return 'Unknown'
+
+    // Step 4 - output the cookie value into the HTML template
 ?>
+
+
 
 
 <head>
@@ -61,6 +70,7 @@
             <a href="index.php" class="brand-logo brand-text">PHP Pizza</a>
             <ul id="nav-mobile" class="right hide-on-small-and-down">
                 <li class="grey-text">Hello <?php echo htmlspecialchars($name); ?></li>
+                <li class="grey-text">(<?php echo htmlspecialchars($gender); ?>)</li>
                 <li><a href="add.php" class="btn brand z-depth-0">Add a Pizza</a></li>
             </ul>
         </div>
