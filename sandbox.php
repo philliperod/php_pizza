@@ -8,49 +8,39 @@
         header('Location: index.php');
     }
 
-    // FILE SYSTEM
+    // CLASS AND OBJECTS
 
-    $file = 'TEST.txt';
+    // may contain its own const and variables (properties), and functions (methods)
+    // basically a blueprint for an object or data type and create an object based on that
 
-    // Step 1 - open file for reading
+    // Step 1 - create a class
+    // class names will start capitalize
+    // there are two types of properties: public and private
+    // public - you have access to the property outside of the class
+    // private - can only be access inside the class
+    // typically, you want to set your properties to private for protection
+    // this class basically describes a type of object
 
-    $handle = fopen($file, 'r+');
-    // fopen(file_name, mode) - opens file or URL
-    // 'r' - means read-only
+    class User
+    {
+        public $email;
+        public $name;
 
-    // Step 2 - read the file
+        public function login()
+        {
+            echo 'User is logged in'.'<br\>';
+        }
+    }
 
-    // echo fread($handle, filesize($file));
-    // fread(handle_name, up_to_length_bytes_read)
-    // reads up to length bytes from the file pointer referenced by stream
+    // Step 2 -
+    // creating a new object stored in a variable and which will be based on the class created
 
-    // Step 3 - read a single line
+    $userOne = new User();
+    // this is invoking the class User
+    // the variable will have access to the properties and methods in class User
 
-    // echo fgets($handle);
-    // echo fgets($handle);
-    // fgets($handle) - gets line from file pointer
-    // the point/cursor will start at the beginning of the line
-    // when you have multiple functions, it will continue to start at the next line
-
-    // Step 4 - read a single character
-
-    // echo fgetc($handle);
-    // fgetc($handle) - gets a single character from file pointer
-
-    // Step 5 - writing to a file
-
-    fwrite($handle, "Don't argue with idiots.");
-    // fwrite($handle, 'new_string_to_use')
-    // writes the contents of string to the file stream pointed to by handle
-
-    // Step 6 - closing the file
-
-    fclose($handle);
-    // fclose($handle) - closes an open file pointer
-    // always close the file when done
-
-    // Side note
-    // unlink(file_name) - deletes a file
+    $userOne->login();
+    // to call the property or method, you will use an arrow
 
 ?>
 
