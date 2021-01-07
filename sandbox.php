@@ -10,25 +10,47 @@
 
     // FILE SYSTEM
 
-    $file = 'QUOTES.txt';
+    $file = 'TEST.txt';
 
-    if (file_exists($file)) {
-        echo readfile($file).'<br/>';
-        // reads the content of the file
-        copy($file, 'QUOTES.txt');
-        // copies file and creates a new file
-        echo realpath($file).'<br/>';
-        // outputs the file pathname
-        echo filesize($file).'<br/>';
-        // outputs the file size
-        rename($file, 'TEST.TXT');
-    // renames the old file to a new file name
-    } else {
-        echo 'File does not exist';
-    }
+    // Step 1 - open file for reading
 
-    mkdir('quotes');
-    // attempts to create the directory specified by pathname
+    $handle = fopen($file, 'r+');
+    // fopen(file_name, mode) - opens file or URL
+    // 'r' - means read-only
+
+    // Step 2 - read the file
+
+    // echo fread($handle, filesize($file));
+    // fread(handle_name, up_to_length_bytes_read)
+    // reads up to length bytes from the file pointer referenced by stream
+
+    // Step 3 - read a single line
+
+    // echo fgets($handle);
+    // echo fgets($handle);
+    // fgets($handle) - gets line from file pointer
+    // the point/cursor will start at the beginning of the line
+    // when you have multiple functions, it will continue to start at the next line
+
+    // Step 4 - read a single character
+
+    // echo fgetc($handle);
+    // fgetc($handle) - gets a single character from file pointer
+
+    // Step 5 - writing to a file
+
+    fwrite($handle, "Don't argue with idiots.");
+    // fwrite($handle, 'new_string_to_use')
+    // writes the contents of string to the file stream pointed to by handle
+
+    // Step 6 - closing the file
+
+    fclose($handle);
+    // fclose($handle) - closes an open file pointer
+    // always close the file when done
+
+    // Side note
+    // unlink(file_name) - deletes a file
 
 ?>
 
