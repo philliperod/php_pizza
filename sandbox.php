@@ -9,13 +9,26 @@
     }
 
     // FILE SYSTEM
-    // PHP can communicate with files on the user's computer or server
 
-    $quote = readfile('README.txt');
-    // reads a file and writes it to the output buffer
-    // at the end of the output it will show the number of bytes
+    $file = 'QUOTES.txt';
 
-    echo $quote;
+    if (file_exists($file)) {
+        echo readfile($file).'<br/>';
+        // reads the content of the file
+        copy($file, 'QUOTES.txt');
+        // copies file and creates a new file
+        echo realpath($file).'<br/>';
+        // outputs the file pathname
+        echo filesize($file).'<br/>';
+        // outputs the file size
+        rename($file, 'TEST.TXT');
+    // renames the old file to a new file name
+    } else {
+        echo 'File does not exist';
+    }
+
+    mkdir('quotes');
+    // attempts to create the directory specified by pathname
 
 ?>
 
