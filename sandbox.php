@@ -10,37 +10,33 @@
 
     // CLASS AND OBJECTS
 
-    // may contain its own const and variables (properties), and functions (methods)
-    // basically a blueprint for an object or data type and create an object based on that
-
-    // Step 1 - create a class
-    // class names will start capitalize
-    // there are two types of properties: public and private
-    // public - you have access to the property outside of the class
-    // private - can only be access inside the class
-    // typically, you want to set your properties to private for protection
-    // this class basically describes a type of object
+    // Step 3 - how to set properties that have empty values
+    // use a constructor function
+    // special functions inside classes that runs whenever a class is set with 'new Class()'
+    // so when it runs it will run the constructor and set some initial values
 
     class User
     {
         public $email;
         public $name;
 
+        public function __construct()
+        {
+            $this->email = 'phil@phil.com';
+            $this->name = 'Philly';
+        }
+
         public function login()
         {
-            echo 'User is logged in'.'<br\>';
+            echo 'User is logged in'.'<br/>';
         }
     }
 
-    // Step 2 -
-    // creating a new object stored in a variable and which will be based on the class created
-
     $userOne = new User();
-    // this is invoking the class User
-    // the variable will have access to the properties and methods in class User
-
     $userOne->login();
-    // to call the property or method, you will use an arrow
+    echo $userOne->name;
+    // when calling a property, you do not need $ before it
+    // current example has an empty value for the property
 
 ?>
 
