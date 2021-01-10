@@ -20,23 +20,26 @@
         public $email;
         public $name;
 
-        public function __construct()
+        public function __construct($name, $email)
         {
-            $this->email = 'phil@phil.com';
-            $this->name = 'Philly';
+            $this->email = $email.'<br/>';
+            $this->name = $name;
         }
 
         public function login()
         {
-            echo 'User is logged in'.'<br/>';
+            echo $this->name.' is logged in';
         }
     }
 
-    $userOne = new User();
-    $userOne->login();
-    echo $userOne->name;
-    // when calling a property, you do not need $ before it
-    // current example has an empty value for the property
+    // $userOne = new User();
+    // $userOne->login();
+    // echo $userOne->name;
+
+    $userTwo = new User('Rod', 'roddy@rod.com');
+    echo $userTwo->name;
+    echo $userTwo->email;
+    echo $userTwo->login();
 
 ?>
 
